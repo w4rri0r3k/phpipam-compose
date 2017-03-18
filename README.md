@@ -1,2 +1,2 @@
 # phpipam-compose
-Docker compose file to run phpipa with mysql 
+Docker compose file to run phpipam with mysql 
