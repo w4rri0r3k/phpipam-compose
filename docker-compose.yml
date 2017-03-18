@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+   phpipam-mysql:
+     image: mysql
+     hostname: phpipam-mysql
+     volumes:
+       - phpipam-mysql:/var/lib/mysql
+     restart: always
+     environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+     ports:
+        - "3306:3306"
+
+
+   phpipam:
+     depends_on:
+       - phpipam-mysql
+     image: rafpe/docker-phpipam
+     restart: always
+     environment:
+       MYSQL_DB_HOSTNAME: phpipam-mysql
+       MYSQL_DB_USERNAME: root
+       MYSQL_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+       MYSQL_DB_NAME: ${MYSQL_DB_NAME}
+     volumes:
+      - phpipam-data:/var/www/
+      - phpipam-data:/ssl
+     links:
+      - phpipam-mysql
+     ports:
+      - "8080:80"
+      - "8443:443"
+
+volumes:
+    phpipam-data:
+    phpipam-mysql:
