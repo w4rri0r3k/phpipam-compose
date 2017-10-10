@@ -16,7 +16,10 @@ services:
    phpipam:
      depends_on:
        - phpipam-mysql
-     image: rafpe/docker-phpipam
+     build: 
+       context: .
+       dockerfile: phpipam/Dockerfile
+     image: docker-phpipam
      restart: always
      environment:
        MYSQL_DB_HOSTNAME: phpipam-mysql
