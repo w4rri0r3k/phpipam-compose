@@ -11,7 +11,7 @@ RUN tar -xzf /tmp/master.tar.gz -C /var/www/html --strip-components=1
 
 COPY ./phpipam/000-default.conf /etc/apache2/sites-available/default
 COPY ./phpipam/config.php /var/www/html
-COPY ./phpipam/phpipam_migration_backup.db /var/www/html/db/bkp
+#COPY ./phpipam/phpipam_migration_backup.db /var/www/html/db/bkp
 
 VOLUME ["/ssl"]
 
